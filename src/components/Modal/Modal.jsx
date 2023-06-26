@@ -4,23 +4,23 @@ import { Modal, Overlay } from './Modal.styled';
 export class ModalIMG extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
-    document.body.style.overflow = 'hidden';
+   
   }
 
   componentDidUpdate() {
     window.removeEventListener('keydown', this.handleKeyDown);
-    document.body.style.overflow = 'visible';
+   
   }
 
   handleKeyDown = event => {
     if (event.code === 'Escape') {
-      this.props.onClose();
+      this.props.closeModal();
     }
   };
 
   handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
-      this.props.onClose();
+      this.props.closeModal();
     }
   };
 
@@ -30,7 +30,7 @@ export class ModalIMG extends Component {
       <>
         <Overlay onClick={this.handleBackdropClick}>
           <Modal>
-            <img src={largeImageURL} alt={tag} />
+            <img src={largeImageURL} alt={tag} onClick={e => e.stopPropagation()}/>
           </Modal>
         </Overlay>
       </>
