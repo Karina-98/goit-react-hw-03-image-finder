@@ -70,6 +70,7 @@ export class App extends Component {
   };
 
   handleLoardMore = () => {
+   
     this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }));
   };
 
