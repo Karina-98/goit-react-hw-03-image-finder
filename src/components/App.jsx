@@ -52,7 +52,8 @@ export class App extends Component {
         // const normalizedImages = data.hits.map(({ id, tags, webformatURL, largeImageURL }) => {
         //   return { id, tags, webformatURL, largeImageURL };
         // });
-        await this.setState(prevState => ({
+        const data = await getIMG(textContext, currentPage);
+        await this.setState((prevState) => ({
           imgs: [...prevState.imgs, ...data.hits],
           status: STATUS.RESOLVED,
           totalPage: Math.ceil(data.totalHits / 12),
@@ -106,13 +107,13 @@ export class App extends Component {
 
         {status === STATUS.PENDING && <Loader />}
 
-        {status === STATUS.RESOLVED && (
+       
           <ImageGallery
             textContext={textContext}
             imgs={imgs}
             onOpenModal={this.onOpenModal}
           />
-        )}
+    
 
         {buttonSeeLoardMore && (
           <ButtonLoardMore
